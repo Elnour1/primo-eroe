@@ -25,7 +25,7 @@ export default function TacticalPitchSection({
         </div>
 
         <div className="grid md:grid-cols-12 gap-6 lg:gap-8 items-center">
-          <div className="md:col-span-5 min-w-0 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 space-y-5">
+          <div className="md:col-span-5 min-w-0 bg-slate-50 p-5 lg:p-8 rounded-3xl border border-slate-200 space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-blue-700 text-white font-['Montserrat'] text-xs font-black">
               <span>{currentPosObj.code}</span>
               <span>•</span>
@@ -40,11 +40,11 @@ export default function TacticalPitchSection({
               {isAr ? currentPosObj.ar.desc : currentPosObj.en.desc}
             </p>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 lg:gap-2">
               {(isAr ? currentPosObj.ar.skills : currentPosObj.en.skills).map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold"
+                  className="px-2.5 lg:px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] lg:text-xs font-bold"
                 >
                   ✓ {skill}
                 </span>
@@ -53,12 +53,16 @@ export default function TacticalPitchSection({
 
             <a
               href="#studio"
-              className="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-sm flex items-center justify-center gap-2 shadow-sm transition"
+              className="w-full py-3.5 px-4 lg:px-5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-xs lg:text-sm flex items-center justify-center gap-2 shadow-sm transition whitespace-nowrap"
             >
               <span>
                 {isAr ? "تعيين هذا المركز في كارت اللاعب" : "Set Position on Player Card"}
               </span>
-              {isAr ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+              {isAr ? (
+                <ArrowLeft className="w-4 h-4 shrink-0" />
+              ) : (
+                <ArrowRight className="w-4 h-4 shrink-0" />
+              )}
             </a>
           </div>
 
