@@ -2,7 +2,7 @@ import { AGE_GROUPS } from "../data/academyData";
 
 export default function AgePathwaySection({ isAr, selectedAge, setSelectedAge }) {
   return (
-    <section id="pathway" className="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="pathway" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <span className="text-blue-700 font-extrabold text-sm">
           {isAr ? "مسار التدرج التدريبي" : "Player Development Pathway"}
@@ -12,14 +12,14 @@ export default function AgePathwaySection({ isAr, selectedAge, setSelectedAge })
         </h2>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
         {AGE_GROUPS.map((group) => {
           const isSelected = selectedAge === group.id;
           return (
             <div
               key={group.id}
               onClick={() => setSelectedAge(group.id)}
-              className={`p-6 rounded-2xl border-2 cursor-pointer transition flex flex-col justify-between ${
+              className={`p-5 lg:p-6 rounded-2xl border-2 cursor-pointer transition flex flex-col justify-between min-w-0 ${
                 isSelected
                   ? "bg-white border-blue-700 shadow-lg shadow-blue-900/5"
                   : "bg-white border-slate-200 hover:border-blue-300"
