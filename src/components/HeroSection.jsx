@@ -15,10 +15,10 @@ export default function HeroSection({
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-gradient-to-br from-blue-50/90 via-slate-50 to-emerald-50/80 pt-10 pb-16 lg:py-20 border-b border-slate-200/60"
+      className="relative overflow-hidden bg-gradient-to-br from-blue-50/90 via-slate-50 to-emerald-50/80 pt-10 pb-16 md:py-20 border-b border-slate-200/60"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-7 space-y-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="md:col-span-7 min-w-0 space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-extrabold">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
             <span>
@@ -115,7 +115,7 @@ export default function HeroSection({
           </div>
         </div>
 
-        <div className="lg:col-span-5 flex justify-center">
+        <div className="md:col-span-5 min-w-0 flex justify-center">
           <HeroPlayerCard
             playerName={playerName}
             jerseyNumber={jerseyNumber}

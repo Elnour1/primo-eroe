@@ -24,8 +24,8 @@ export default function TacticalPitchSection({
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-5 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 space-y-5">
+        <div className="grid md:grid-cols-12 gap-6 lg:gap-8 items-center">
+          <div className="md:col-span-5 min-w-0 bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200 space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-blue-700 text-white font-['Montserrat'] text-xs font-black">
               <span>{currentPosObj.code}</span>
               <span>•</span>
@@ -62,7 +62,7 @@ export default function TacticalPitchSection({
             </a>
           </div>
 
-          <div className="lg:col-span-7">
+          <div className="md:col-span-7 min-w-0">
             <div className="relative w-full aspect-[16/10] rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-500 to-emerald-700 p-4 sm:p-6 shadow-xl overflow-hidden border-4 border-emerald-800/20">
               <div className="w-full h-full border-2 border-white/60 rounded-xl relative flex items-center justify-center">
                 <div className="absolute inset-y-0 left-1/2 w-0.5 bg-white/60 -translate-x-1/2" />
@@ -82,7 +82,7 @@ export default function TacticalPitchSection({
                         isActive ? "scale-115 z-20" : "hover:scale-105 z-10"
                       }`}
                     >
-                     <span
+                      <span
                         className={`w-9 h-9 sm:w-14 sm:h-14 rounded-full flex items-center justify-center font-['Montserrat'] font-black text-[10px] sm:text-sm shadow-lg transition ${
                           isActive
                             ? "bg-amber-400 text-slate-950 ring-4 sm:ring-8 ring-amber-300/40"

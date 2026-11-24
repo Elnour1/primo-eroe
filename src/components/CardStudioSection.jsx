@@ -143,9 +143,9 @@ export default function CardStudioSection({
       className="py-12 sm:py-16 bg-gradient-to-b from-slate-100 to-slate-50 border-y border-slate-200 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
-        <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl p-4 sm:p-10 grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl p-4 sm:p-8 lg:p-10 grid md:grid-cols-12 gap-6 lg:gap-10 items-center">
           {/* عمود نموذج التسجيل */}
-          <div className="lg:col-span-7 min-w-0 space-y-5">
+          <div className="md:col-span-7 min-w-0 space-y-5">
             <div>
               <span className="text-emerald-600 font-extrabold text-sm">
                 {isAr ? "سجّل في الدفعة المؤسسة 2026" : "Join Founding Batch 2026"}
@@ -312,7 +312,7 @@ export default function CardStudioSection({
           </div>
 
           {/* عمود معاينة الكارت والتحميل */}
-          <div className="lg:col-span-5 min-w-0 bg-slate-50 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 flex flex-col items-center space-y-4">
+          <div className="md:col-span-5 min-w-0 bg-slate-50 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200 flex flex-col items-center space-y-4">
             <HeroPlayerCard
               playerName={playerName}
               jerseyNumber={jerseyNumber}
