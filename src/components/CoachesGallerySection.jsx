@@ -14,17 +14,17 @@ export default function CoachesGallerySection({ isAr }) {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5">
             {COACHES.map((coach) => (
               <div
                 key={coach.nameEn}
-                className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-4 hover:border-blue-400 transition"
+                className="p-4 lg:p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3 lg:gap-4 hover:border-blue-400 transition min-w-0"
               >
-                <div className="w-14 h-14 rounded-2xl bg-blue-900 text-amber-400 font-['Montserrat'] font-black text-base flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-blue-900 text-amber-400 font-['Montserrat'] font-black text-sm lg:text-base flex items-center justify-center shrink-0">
                   PE
                 </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-base">
+                <div className="min-w-0">
+                  <h3 className="font-black text-slate-900 text-sm lg:text-base">
                     {isAr ? coach.nameAr : coach.nameEn}
                   </h3>
                   <p className="text-xs font-bold text-emerald-600 mt-0.5">

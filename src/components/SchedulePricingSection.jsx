@@ -10,7 +10,7 @@ export default function SchedulePricingSection({ isAr }) {
       : AGE_GROUPS.filter((g) => g.id === scheduleFilter);
 
   return (
-    <section id="schedule" className="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="schedule" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6">
       <div className="text-center max-w-2xl mx-auto mb-10">
         <span className="text-blue-700 font-extrabold text-sm">
           {isAr ? "الشفافية والوضوح" : "Clear Schedule & Fees"}
@@ -48,8 +48,8 @@ export default function SchedulePricingSection({ isAr }) {
         ))}
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
-        <div className="lg:col-span-8 bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
+      <div className="grid md:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div className="md:col-span-8 min-w-0 bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-blue-50 text-blue-950 font-extrabold">
@@ -82,7 +82,7 @@ export default function SchedulePricingSection({ isAr }) {
           </div>
         </div>
 
-        <div className="lg:col-span-4 space-y-4">
+        <div className="md:col-span-4 min-w-0 space-y-4">
           <div className="p-6 rounded-3xl bg-gradient-to-br from-blue-900 to-blue-800 text-white shadow-lg">
             <span className="text-xs font-extrabold text-amber-300 uppercase">
               {isAr ? "باقة التأسيس" : "Founding Package"}

@@ -2,7 +2,7 @@ import { Trophy, ShieldCheck } from "lucide-react";
 
 export default function WhySection({ isAr }) {
   return (
-    <section id="why" className="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <section id="why" className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6">
       <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
         <span className="text-emerald-600 font-extrabold text-sm">
           {isAr ? "الهوية والمنهجية" : "Identity & Methodology"}
@@ -17,8 +17,8 @@ export default function WhySection({ isAr }) {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-6 items-stretch">
-        <div className="lg:col-span-5 rounded-3xl overflow-hidden bg-slate-900 relative min-h-[280px] shadow-md group">
+      <div className="grid md:grid-cols-12 gap-6 items-stretch">
+        <div className="md:col-span-5 min-w-0 rounded-3xl overflow-hidden bg-slate-900 relative min-h-[280px] shadow-md group">
           <img
             src="./images/training-group.jfif"
             alt="Primo Eroe Youth Training"
@@ -36,7 +36,7 @@ export default function WhySection({ isAr }) {
           </div>
         </div>
 
-        <div className="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+        <div className="md:col-span-7 min-w-0 grid sm:grid-cols-2 gap-5">
           <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-sm hover:border-blue-300 transition">
             <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-4">
               <Trophy className="w-6 h-6" />
