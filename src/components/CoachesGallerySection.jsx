@@ -20,8 +20,12 @@ export default function CoachesGallerySection({ isAr }) {
                 key={coach.nameEn}
                 className="p-4 lg:p-5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3 lg:gap-4 hover:border-blue-400 transition min-w-0"
               >
-                <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-blue-900 text-amber-400 font-['Montserrat'] font-black text-sm lg:text-base flex items-center justify-center shrink-0">
-                  PE
+                <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-white border border-slate-200 p-1.5 flex items-center justify-center shrink-0 shadow-xs">
+                  <img
+                    src="./images/logo.svg"
+                    alt="Primo Eroe Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-black text-slate-900 text-sm lg:text-base">
