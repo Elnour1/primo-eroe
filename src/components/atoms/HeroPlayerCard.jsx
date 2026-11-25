@@ -7,6 +7,7 @@ export default function HeroPlayerCard({
   positionCode,
   positionLabel,
   ageLabel,
+  playerPhoto = null,
   lang = "ar",
   compact = false,
 }) {
@@ -35,6 +36,7 @@ export default function HeroPlayerCard({
 
   const displayName = playerName?.trim() || (lang === "ar" ? "بطل بريمو إيرو" : "PRIMO HERO");
   const displayNumber = jerseyNumber || "10";
+  const activePhotoSrc = playerPhoto || "/images/hero-player.jfif";
 
   return (
     <div
@@ -90,10 +92,12 @@ export default function HeroPlayerCard({
             </span>
 
             <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-linear-to-tr from-amber-500 via-amber-200 to-amber-500 shadow-xl">
-              {!imgError ? (
+              {!imgError || playerPhoto ? (
                 <img
-                  src="/images/hero-player.jfif"
+                  key={activePhotoSrc}
+                  src={activePhotoSrc}
                   alt={displayName}
+                  onLoad={() => setImgError(false)}
                   onError={() => setImgError(true)}
                   className="w-full h-full object-cover object-top rounded-full bg-slate-900"
                 />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Download, Send, CheckCircle2, Lock } from "lucide-react";
+import { Download, Send, CheckCircle2, Lock, Camera, X } from "lucide-react";
 import HeroPlayerCard from "./atoms/HeroPlayerCard";
 import {
   POSITIONS,
@@ -24,15 +24,57 @@ export default function CardStudioSection({
 }) {
   const [parentName, setParentName] = useState("");
   const [parentPhone, setParentPhone] = useState("");
+  const [playerPhoto, setPlayerPhoto] = useState(null);
   const [honeypot, setHoneypot] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file || !file.type.startsWith("image/")) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPlayerPhoto(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleDownloadCard = () => {
     const canvas = document.createElement("canvas");
     canvas.width = 720;
     canvas.height = 1000;
     const ctx = canvas.getContext("2d");
+
+    const drawRestAndDownload = () => {
+      ctx.strokeStyle = "rgba(253, 230, 138, 0.5)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(100, 560);
+      ctx.lineTo(620, 560);
+      ctx.stroke();
+
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "900 52px Cairo, sans-serif";
+      ctx.fillText(playerName.trim() || (isAr ? "بطل بريمو إيرو" : "PRIMO HERO"), 360, 655);
+
+      ctx.fillStyle = "#FDE68A";
+      ctx.font = "700 30px Cairo, sans-serif";
+      const posText = isAr ? currentPosObj.ar.name : currentPosObj.en.name;
+      const ageText = isAr ? currentAgeObj.ageAr : currentAgeObj.ageEn;
+      ctx.fillText(`${posText} • ${ageText}`, 360, 720);
+
+      ctx.fillStyle = "rgba(255,255,255,0.12)";
+      ctx.fillRect(70, 840, 580, 64);
+      ctx.fillStyle = "#FDE68A";
+      ctx.font = "800 22px Montserrat, sans-serif";
+      ctx.fillText("PRIMO EROE • FOUNDING BATCH 2026", 360, 880);
+
+      const link = document.createElement("a");
+      link.download = `Primo-Eroe-${playerName.trim() || "Player"}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    };
 
     const grad = ctx.createLinearGradient(0, 0, 720, 1000);
     grad.addColorStop(0, "#1E3A8A");
@@ -59,37 +101,44 @@ export default function CardStudioSection({
     ctx.font = "800 28px Montserrat, sans-serif";
     ctx.fillText(selectedPos, 120, 165);
 
-    ctx.fillStyle = "#FFFFFF";
-    ctx.font = "900 240px Montserrat, sans-serif";
-    ctx.fillText(`#${jerseyNumber || "10"}`, 360, 480);
+    if (playerPhoto) {
+      const img = new Image();
+      img.onload = () => {
+        const cx = 360;
+        const cy = 310;
+        const radius = 115;
 
-    ctx.strokeStyle = "rgba(253, 230, 138, 0.5)";
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(100, 560);
-    ctx.lineTo(620, 560);
-    ctx.stroke();
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
 
-    ctx.fillStyle = "#FFFFFF";
-    ctx.font = "900 52px Cairo, sans-serif";
-    ctx.fillText(playerName.trim() || (isAr ? "بطل بريمو إيرو" : "PRIMO HERO"), 360, 655);
+        const scale = Math.max((radius * 2) / img.width, (radius * 2) / img.height);
+        const w = img.width * scale;
+        const h = img.height * scale;
+        ctx.drawImage(img, cx - w / 2, cy - radius, w, h);
+        ctx.restore();
 
-    ctx.fillStyle = "#FDE68A";
-    ctx.font = "700 30px Cairo, sans-serif";
-    const posText = isAr ? currentPosObj.ar.name : currentPosObj.en.name;
-    const ageText = isAr ? currentAgeObj.ageAr : currentAgeObj.ageEn;
-    ctx.fillText(`${posText} • ${ageText}`, 360, 720);
+        ctx.strokeStyle = "#F59E0B";
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.stroke();
 
-    ctx.fillStyle = "rgba(255,255,255,0.12)";
-    ctx.fillRect(70, 840, 580, 64);
-    ctx.fillStyle = "#FDE68A";
-    ctx.font = "800 22px Montserrat, sans-serif";
-    ctx.fillText("PRIMO EROE • FOUNDING BATCH 2026", 360, 880);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.font = "900 72px Montserrat, sans-serif";
+        ctx.fillText(`#${jerseyNumber || "10"}`, 360, 515);
 
-    const link = document.createElement("a");
-    link.download = `Primo-Eroe-${playerName.trim() || "Player"}.png`;
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+        drawRestAndDownload();
+      };
+      img.src = playerPhoto;
+    } else {
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "900 240px Montserrat, sans-serif";
+      ctx.fillText(`#${jerseyNumber || "10"}`, 360, 480);
+      drawRestAndDownload();
+    }
   };
 
   const handleFormSubmit = async (e) => {
@@ -197,6 +246,44 @@ export default function CardStudioSection({
                     onChange={(e) => setJerseyNumber(e.target.value.slice(0, 2))}
                     className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 focus:border-blue-600 focus:bg-white outline-none font-['Montserrat'] text-sm font-black text-amber-600"
                   />
+                </div>
+              </div>
+
+              {/* رفع صورة اللاعب للكارت */}
+              <div>
+                <label className="block text-xs font-extrabold text-slate-700 mb-1.5">
+                  {isAr ? "صورة اللاعب على الكارت (اختياري)" : "Player Photo on Card (Optional)"}
+                </label>
+                <div className="flex flex-wrap items-center gap-3">
+                  <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-900 text-xs font-extrabold transition">
+                    <Camera className="w-4 h-4 text-blue-700" />
+                    <span>
+                      {playerPhoto
+                        ? isAr
+                          ? "تغيير الصورة"
+                          : "Change Photo"
+                        : isAr
+                        ? "اختر صورة من الجهاز"
+                        : "Upload Player Photo"}
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoUpload}
+                      className="hidden"
+                    />
+                  </label>
+
+                  {playerPhoto && (
+                    <button
+                      type="button"
+                      onClick={() => setPlayerPhoto(null)}
+                      className="inline-flex items-center gap-1 px-3 py-2.5 rounded-xl bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 text-xs font-bold transition cursor-pointer"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                      <span>{isAr ? "حذف الصورة" : "Remove"}</span>
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -319,6 +406,7 @@ export default function CardStudioSection({
               positionCode={selectedPos}
               positionLabel={isAr ? currentPosObj.ar.name : currentPosObj.en.name}
               ageLabel={isAr ? currentAgeObj.ageAr : currentAgeObj.ageEn}
+              playerPhoto={playerPhoto}
               lang={lang}
               compact
             />
